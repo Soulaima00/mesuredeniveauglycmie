@@ -61,12 +61,12 @@ x
             @Override
             public void onClick(View v) {
 
-                Log.i("Information", "button cliqué");
+                Log.i("Information", "button cliquée");
                 boolean verifAge = false, verifValeur = false;
                 if(sbAge.getProgress()!=0)
                     verifAge = true;
                 else
-                    Toast.makeText(MainActivity.this, "Veuillez saisir votre age !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Veuillez saisir votre age ?", Toast.LENGTH_SHORT).show();
 
                 if(!etValeur.getText().toString().isEmpty())
                     verifValeur = true;
