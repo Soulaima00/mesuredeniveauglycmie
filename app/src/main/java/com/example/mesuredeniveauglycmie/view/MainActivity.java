@@ -12,7 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mesuredeniveauglycmie.R;
-import com.example.mesureglycemie.controller.Controller;
+import com.example.mesuredeniveauglycmie.controller.Controller;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvAge, tvReponse;

@@ -1,6 +1,6 @@
-package com.example.mesureglycemie.controller;
+package com.example.mesuredeniveauglycmie.controller;
 
-import com.example.mesureglycemie.model.Patient;
+import com.example.mesuredeniveauglycmie.model.Patient;
 
 public class Controller {
     private static Patient patient;

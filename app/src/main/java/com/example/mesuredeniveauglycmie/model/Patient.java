@@ -1,4 +1,4 @@
-package com.example.mesureglycemie.model;
+package com.example.mesuredeniveauglycmie.model;
 
 public class Patient {
     private int age;
