@@ -1,7 +1,9 @@
 package com.example.mesuredeniveauglycmie.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +17,9 @@ import com.example.mesuredeniveauglycmie.R;
 import com.example.mesuredeniveauglycmie.controller.Controller;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvAge, tvReponse;
+    private final String RESPONSE_KEY ="response";
+    private final int REQUEST_CODE = 1 ; //code de l'acitivite consultAcitivty : chaque activity a une request code
+    private TextView tvAge; //, tvReponse --->ConsultActivity
     private SeekBar sbAge;
     private RadioButton rbIsFasting, rbIsNotFasting;
     private Button btnConsulter;
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         rbIsNotFasting = findViewById(R.id.rbtNon);
         btnConsulter = findViewById(R.id.btnConsulter);
         etValeur = findViewById(R.id.etValeur);
-        tvReponse = findViewById(R.id.tvReponse);
+        //tvReponse = findViewById(R.id.tvReponse);
     }
 
     @Override
@@ -78,9 +82,18 @@ public class MainActivity extends AppCompatActivity {
                     controller.createPatient(age, valeur, rbIsFasting.isChecked());
 
                     //Flèche "Notify" Controller --> view
-                    tvReponse.setText(controller.getResult());
+                    //tvReponse.setText(controller.getResult());
+
+                    Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
+                    intent.putExtra(RESPONSE_KEY,controller.getResult());
+                    startActivityForResult(intent,REQUEST_CODE);
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
