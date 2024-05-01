@@ -18,7 +18,7 @@ import com.example.mesuredeniveauglycmie.controller.Controller;
 
 public class MainActivity extends AppCompatActivity {
     private final String RESPONSE_KEY ="response";
-    private final int REQUEST_CODE = 1 ; //code de l'acitivite consultAcitivty : chaque activity a une request code
+    private final int REQUEST_CODE = 1 ; //code de l'activite consultAcitivty : chaque activity a une request code
     private TextView tvAge; //, tvReponse --->ConsultActivity
     private SeekBar sbAge;
     private RadioButton rbIsFasting, rbIsNotFasting;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init()
     {
-        controller = Controller.getInstance();
+        controller = Controller.getInstance(getApplicationContext());
         tvAge = findViewById(R.id.tvAge);
         sbAge = findViewById(R.id.sbAge);
         rbIsFasting = findViewById(R.id.rbtOui);
@@ -91,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+//if Request code =1 et ResultCanceled alors on va faire une toast d'erreur
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE)
+            if (resultCode == RESULT_CANCELED)
+                Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_LONG).show();
+        //MainActivity.this remplacé par getApplicationContext
     }
 }

@@ -1,57 +1,111 @@
 package com.example.mesuredeniveauglycmie.model;
 
+import org.json.JSONArray;
+
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Patient {
+
+    private Date dateMesure;
     private int age;
     private float valeurMesuree;
     private boolean isFasting;
-    private String result;
+    private static String reponse;
 
+    public Patient() {
+    }
 
     //Flèche "Update" Controller --> Model
-
-    public Patient(int age, float valeurMesuree, boolean isFasting){
+    public Patient(Date date, int age, float valeurMesuree, boolean isFasting) {
+        dateMesure = date;
         this.age = age;
         this.valeurMesuree = valeurMesuree;
         this.isFasting = isFasting;
-        setResult();
-    }
+        calculer();
 
-    public void setResult () {
+    }
+    private void calculer ()
+    {
         if(isFasting) {
             if (age >= 13) {
                 if (valeurMesuree < 5.0)
-                    result = "Niveau de glycémie est trop bas";
+                    reponse = "Niveau de glycémie est trop bas";
                 else if (valeurMesuree >= 5.0 && valeurMesuree <= 7.2)
-                    result = "Niveau de glycémie est normale";
+                    reponse = "Niveau de glycémie est normale";
                 else
-                    result = "Niveau de glycémie est trop élevé";
+                    reponse = "Niveau de glycémie est trop élevé";
             } else if (age >= 6 && age <= 12) {
                 if (valeurMesuree < 5.0)
-                    result = "Niveau de glycémie est trop bas";
+                    reponse = "Niveau de glycémie est trop bas";
                 else if (valeurMesuree >= 5.0 && valeurMesuree <= 10.0)
-                    result = "Niveau de glycémie est normale";
+                    reponse = "Niveau de glycémie est normale";
                 else
-                    result = "Niveau de glycémie est trop élevé";
+                    reponse = "Niveau de glycémie est trop élevé";
             } else if (age < 6) {
                 if (valeurMesuree < 5.5)
-                    result = "Niveau de glycémie est trop bas";
+                    reponse = "Niveau de glycémie est trop bas";
                 else if (valeurMesuree >= 5.5 && valeurMesuree <= 10.0)
-                    result = "Niveau de glycémie est normale";
-                else {
-                    result = "Niveau de glycémie est trop élevé";
-                }
+                    reponse = "Niveau de glycémie est normale";
+                else
+                    reponse = "Niveau de glycémie est trop élevé";
             }
         } else {
-            if (valeurMesuree > 10.5)
-                result = "Niveau de glycémie est trop élevé";
+            if (valeurMesuree < 5.5)
+                reponse = "Niveau de glycémie est trop bas";
+            else if (valeurMesuree > 10.5)
+                reponse = "Niveau de glycémie est trop élevé";
             else
-                result = "Niveau de glycémie est normale";
+                reponse = "ce niveau de glycémie est normale après les repas";
         }
     }
-
-
-    //Flèche "Modify" Model --> Controller
-    public String getResult() {
-        return result;
+    public int getAge() {
+        return age;
     }
+    public float getValeurMesuree() {
+        return valeurMesuree;
+    }
+    public boolean isFasting() {
+        return isFasting;
+    }
+
+    public Date getDate() {
+        return dateMesure;
+    }
+
+
+    //Flèche "Notify" Model --> Controller
+    public String getReponse() {
+        return reponse;
+    }
+
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setValeurMesuree(float valeurMesuree) {
+        this.valeurMesuree = valeurMesuree;
+    }
+
+    public void setFasting(boolean fasting) {
+        isFasting = fasting;
+    }
+
+    /**
+     * conversion du patient en format JSONArray
+     * @return
+     */
+    public JSONArray convertToJSONArray (){
+        List laListe = new ArrayList<>();
+        laListe.add(dateMesure);
+        laListe.add(age);
+        laListe.add(isFasting);
+        laListe.add(valeurMesuree);
+        return new JSONArray(laListe);
+    }
+
+
+
 }
