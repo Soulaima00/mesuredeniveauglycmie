@@ -49,11 +49,6 @@ public class AccessLocal {
 
     public void insertPatient (Patient patient) {
 
-        // COL_DATE_MESURE : TEXT PRIMARY KEY
-        // COL_AGE :  INTEGER NOT NULL
-        // COL_VALEUR_MESUREE : REAL NOT NULL
-        // COL_IS_FASTING : INTEGER NOT NULL (0,1)
-
         openForWrite();
         ContentValues content = new ContentValues ();
 
@@ -81,43 +76,7 @@ public class AccessLocal {
     }
 
 
-
-    /*
-    public Patient getPatient()
-    {
-        // COL_DATE_MESURE : TEXT PRIMARY KEY
-        // COL_AGE :  INTEGER NOT NULL
-        // COL_VALEUR_MESUREE : REAL NOT NULL
-        // COL_IS_FASTING : INTEGER NOT NULL (0,1)
-
-        openForRead();
-        Patient patient = null;
-
-        String req = "select * from "+ TABLE_NAME;
-        Cursor curseur = bd.rawQuery(req, null); // lire ligne par ligne
-        curseur.moveToLast(); // se possitionner sur la dernière ligne du table
-        if (!curseur.isAfterLast()) {
-            int age = curseur.getInt(1);
-            float valeur_mesure = curseur.getFloat(2);
-            boolean is_fasting = false;
-            if(curseur.getInt(3)==1)
-                is_fasting = true;
-
-            patient = new Patient(new Date(),age,valeur_mesure,is_fasting);
-        }
-
-        close();
-        return patient;
-    }
-
-    */
-
     public Patient getPatient () {
-
-        // COL_DATE_MESURE : TEXT PRIMARY KEY
-        // COL_AGE :  INTEGER NOT NULL
-        // COL_VALEUR_MESUREE : REAL NOT NULL
-        // COL_IS_FASTING : INTEGER NOT NULL (0,1)
 
         openForRead();
         Cursor c = bd.query(

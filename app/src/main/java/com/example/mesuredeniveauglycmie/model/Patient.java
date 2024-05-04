@@ -85,13 +85,6 @@ public class Patient {
         this.age = age;
     }
 
-    public void setValeurMesuree(float valeurMesuree) {
-        this.valeurMesuree = valeurMesuree;
-    }
-
-    public void setFasting(boolean fasting) {
-        isFasting = fasting;
-    }
 
     /**
      * conversion du patient en format JSONArray

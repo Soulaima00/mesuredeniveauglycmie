@@ -98,6 +98,6 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE)
             if (resultCode == RESULT_CANCELED)
                 Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_LONG).show();
-        //MainActivity.this remplacé par getApplicationContext
+        //MainActivity.this est remplacé par getApplicationContext
     }
 }
