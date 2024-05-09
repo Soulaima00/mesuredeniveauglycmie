@@ -1,27 +1,20 @@
 package com.example.mesuredeniveauglycmie.model;
 
 public class User {
-    private String email;
+    private String userEmail;
     private String password;
 
-    public User(String email, String password) {
-        this.email = email;
+    public User(String userName, String password) {
+        this.userEmail = userName;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
